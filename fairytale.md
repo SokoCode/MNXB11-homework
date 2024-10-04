@@ -1,6 +1,6 @@
 # MNXB11 fairytale
 
-Once upon a time, there was an **old** _computer_
+Once upon a time, there was a **beautiful** _princess_ and an **old** _computer_
 
 ```
                                         ▓▓▓▓▓▓                                          
