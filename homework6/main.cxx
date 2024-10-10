@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <cstdlib>
+#include <cstdlib> 
 
 
 int compute_checksum(const std::string& input_string) {
@@ -11,28 +11,32 @@ int compute_checksum(const std::string& input_string) {
     return checksum;
 }
 
+
+int calculate_key(int checksum, char first_char, std::size_t program_name_length) {
+    return (checksum ^ first_char * 3) << (program_name_length & 0x1f);
+}
+
 int main(int argument_count, char *arguments[]) {
     
   bool has_required_arguments = (argument_count == 3);
 
   if (has_required_arguments) {
-    std::string program_name{arguments[0]}; 
+    std::string program_name{arguments[0]};
     char first_char_of_argument{*(arguments[1])};
     std::size_t program_name_length{program_name.size()};
     int provided_checksum{std::atoi(arguments[2])};
 
-    std::string input_string{arguments[1]};
+    std::string input_string{arguments[1]}; 
 
-   
     int calculated_value = compute_checksum(input_string);
 
-    
-    if ((calculated_value ^ first_char_of_argument * 3) << (program_name_length & 0x1f) == provided_checksum) {
+    int key = calculate_key(calculated_value, first_char_of_argument, program_name_length);
+
+
+    if (key == provided_checksum) {
       std::cout << "Correct!" << std::endl;
     } else {
       std::cout << "Wrong!" << std::endl;
     }
   }
 }
-
-
