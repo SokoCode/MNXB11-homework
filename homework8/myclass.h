@@ -1,17 +1,25 @@
 #ifndef __MYCLASS_H__
 #define __MYCLASS_H__
 
-class your_class : public TObject {
-    public:
-        your_class(); // default constructor
-        your_class(Int_t variable); // some other constructor
-        virtual ~your_class(); // destructor
+#include <TObject.h>
+#include <cmath>
 
-    private:
-        // some private members
+class myclass : public TObject {
+public:
+    // Constructors and Destructor
+    myclass();                    // Default constructor
+    myclass(Int_t variable);      // Parameterized constructor
+    virtual ~myclass();           // Destructor
 
-    ClassDef(your_class, 1); // your_class
+ 
+    Double_t GetMagnitude() const;
+
+    Double_t px;
+    Double_t py;
+    Double_t pz;
+
+private:
+    ClassDef(myclass, 1);
 };
-
 
 #endif // __MYCLASS_H__
